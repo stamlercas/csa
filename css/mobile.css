@@ -36,6 +36,10 @@ and open the template in the editor.
         display:block;
     }
     
+    .hasSubNav {
+        float:none;
+        width:100%;
+    }
     .movieBackdrop {
         display:none;
     }
@@ -88,6 +92,11 @@ and open the template in the editor.
     }
     #newsItem #article {
         margin-left:0;
+    }
+    #subNav {
+        float: none;
+        max-width:100%;
+        margin:0;
     }
 
 }
