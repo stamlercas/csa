@@ -1,0 +1,77 @@
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l 
+
+
+#RewriteRule ^([A-Za-z0-9-]+)/?$ index.php?action=$1 [QSA]
+
+# ------------------------------------ #
+# ABOUT
+# ------------------------------------ #
+#fundraising
+RewriteRule ^about/fundraising/?$ controller/index.php?action=fundraising [QSA]
+
+
+# ------------------------------------ #
+# APPLE
+# ------------------------------------ #
+
+#adding images
+RewriteRule ^apple/add/?$ controller/index.php?action=addApple [QSA]
+#editing images
+RewriteRule ^apple/edit/?$ controller/index.php?action=editApple [QSA]
+#deleting images
+RewriteRule ^apple/delete/?$ controller/index.php?action=deleteApple [QSA]
+
+
+# ------------------------------------ #
+# BUS
+# ------------------------------------ #
+
+#bus break schedule
+RewriteRule ^bus/break/?$ controller/index.php?action=busBreak [QSA]
+#ata schedule
+RewriteRule ^bus/ata/?$ controller/index.php?action=ata [QSA]
+
+
+# ------------------------------------ #
+# MOVIES
+# ------------------------------------ #
+
+#adding movies
+RewriteRule ^movies/add/?$ controller/index.php?action=addMovie [QSA]
+#adding movie showings -- TWO DIFFERENT URLS --
+RewriteRule ^movies/addShowing/?$ controller/index.php?action=addMovieListing [QSA]
+RewriteRule ^movies/add-showing/?$ controller/index.php?action=addMovieListing [QSA]
+#for movie schedule
+RewriteRule ^movies/schedule/?$ controller/index.php?action=movieSchedule [QSA]
+#for deleting dates from movie schedule
+RewriteRule ^movies/deleteDate/?$ controller/index.php?action=deleteDate [QSA]
+#for movie list
+RewriteRule ^movies/list/?$ controller/index.php?action=movieList [QSA]
+#for deleting dates from movie schedule
+RewriteRule ^movies/deleteMovie/?$ controller/index.php?action=deleteMovie [QSA]
+#for movie showings for CURRENT WEEK
+RewriteRule ^movies/week/?$ controller/index.php?action=movieWeeklySchedule [QSA]
+#for movie items
+RewriteRule ^movies/([0-9-]+)/?$ controller/index.php?action=movieDisp&MovieID=$1 [QSA]
+
+
+# ------------------------------------ #
+# NEWS
+# ------------------------------------ #
+
+#adding news
+RewriteRule ^news/add/?$ controller/index.php?action=addNews [QSA]
+#deleting news
+RewriteRule ^news/delete/?$ controller/index.php?action=deleteNews [QSA]
+#for news items
+RewriteRule ^news/([A-Za-z0-9-]+)/?$ controller/index.php?action=newsDisp&Slug=$1 [QSA]
+
+#slideshow upload
+RewriteRule ^slideshow/upload/?$ controller/index.php?action=slideshowFileUpload [QSA]
+
+#for generic actions from controller
+RewriteRule ^([A-Za-z0-9-]+)/?$ controller/index.php?action=$1 [QSA]

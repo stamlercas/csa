@@ -1,0 +1,345 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 10, 2015, 11:39:20 AM
+    Author     : Chris
+*/
+
+/**********
+DEFAULTS
+**********/
+body {
+	margin:0px;
+	padding:0px;
+        background-color: #fff;
+        
+}
+html {
+        font-family: "Open Sans", sans-serif;
+        color:black;
+	margin:0px 0px 0px 0px;
+	padding:0px 0px 0px 0px;
+}
+iframe {
+    display:block;
+}
+
+a:link {
+        color:#000;
+        text-decoration:none;
+}
+a:visited {
+        color:#000;
+}
+footer { 
+        padding:10px 10px 20px 10px;
+        background-color:#97824A;
+        bottom:0;
+        left:0;
+        /*position:absolute; */
+        width:100%;
+        box-sizing:border-box;
+        color:#fff;
+}
+footer a:hover {
+    color:#003366;
+}
+header {
+    background-color:#003366;
+    width:auto;
+    text-align:center;
+    padding:5px 0px;
+    color:white;
+    min-width:960px;
+}
+header a:link, header a:visited, footer a:link, footer a:visited {
+    color:white;
+}
+nav {
+    /* background-color: #7AAED5; */
+    z-index:99;
+    background-color:#003366;
+    width:100%;
+    text-align:center;
+    padding:5px 0px;
+}
+nav a {
+    padding: 5px;
+}
+nav a:hover {
+        color:#7AAED5;
+}
+nav #appleNav:hover {
+    color:#679650;
+}
+nav ul li {
+    display:inline;
+}
+/*
+nav a:hover {
+    background-color:#fff;
+}*/
+section {
+    width:960px;
+    color:#003366;
+    padding:5px;
+    margin:0 auto;
+    box-sizing:border-box;
+    margin-bottom:25px; 
+}
+section a:link {
+        color:#003366;
+        text-decoration:none;
+}
+section a:visited {
+        color:#003366;
+}
+ul {
+    list-style-type: none;
+}
+
+.details {
+    font-size:small;
+}
+.errors {
+    color:#f00;
+}
+.fixed {
+    position: fixed;
+}
+.fundraising ul {
+    list-style-type:disc;
+}
+.hasSubNav {
+    width:670px;
+    float:right;
+}
+.homepage {
+    padding:5px 0px 5px 0px;
+}
+.loadingImage {
+    display:block;
+    margin: 0 auto;
+    position:absolute;
+    top:67%;
+    bottom:33%;
+    right:55%;
+    left:45%;
+    z-index:99;
+}
+.movieBackdrop {
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: .1;
+    width: 100%;
+    height: 100%;
+}
+.movieList {
+    width:300px;
+}
+.moviePosterDisplay {
+    float:left;
+    width:150px;
+    margin:10px;
+    padding:10px;
+}
+.moviePosterDisplay:hover {
+    background-color:#eee;
+}
+.movieScheduleItem, .movieListItem {
+    padding:3px;
+    width:auto;
+}
+.movieScheduleItem label, .movieListItem label {
+    display:inline-block;
+    /* width:250px; */
+}
+.movieScheduleItem:hover, .movieListItem:hover {
+    background-color:#E2D1A4;
+}
+.movieScheduleItem input, .movieListItem input {
+    float:right;
+}
+.newsContent {
+    width:75%;
+    padding: 0px 2px 2px 15px;
+    opacity:1;
+}
+.newsContent:hover {
+    opacity:.5;
+}
+.newsContent a {
+    color:#003366;
+}
+.newsContent h3 {
+    margin-bottom:5px;
+}
+.newsContent .description {
+    font-size:small;
+    padding:10px;
+    margin:5px;
+    background-color:#eee;
+}
+.addEditForm {
+    padding:3px;
+}
+.addEditForm label {
+    font-weight:bold;
+    display:inline-block;
+    width:150px;
+}
+.page {
+    float:left;
+    /* background-color:#97824A; */
+    padding:5px 5px;
+    margin:5px 5px;
+    color:#003366;
+}
+.page:hover {
+    /* background-color:#eee; */
+    color:#003366;
+}
+.page a:link, .page a:visited {
+    color:#003366;
+}
+.page a:hover {
+    color:#003366;
+}
+.rounded { 
+	border-radius:15px; 
+	-moz-border-radius:15px; 
+	-webkit-border-radius:15px; 
+}
+.search { 
+	padding:6px 15px 6px 30px;
+	margin:3px; 
+	background: url('../images/search.png') no-repeat 4px 3px; 
+}
+.searchForm input[type=text]{
+	color:#333;
+	border:1px solid #acb1b7;
+	background-color:#fcfcfc;
+}
+.slicknav_menu {
+    display:none;
+}
+.staticContent {
+    padding:10px;
+}
+.underlineLink a:link, .underlineLink a:visited {
+    text-decoration:underline;
+}
+.warning {
+    text-align:center;
+}
+
+
+#adminMenu ul li {
+    padding:0px 20px;
+}
+#content {
+    margin:5px;
+    padding:5px 15px;
+    width:600px;
+    float:left;
+}
+#headerTitle {
+    margin:0 auto;
+    padding:10px 5px 5px 5px;
+}
+#homepageContent {
+    padding:10px;
+}
+#homepageContent .left {
+    float:left;
+    width:455px;
+    padding:5px;
+}
+#homepageContent .right {
+    float:right;
+    width:455px;
+    padding:5px;
+}
+#movieResults {
+    border:2px #003366 solid;
+    width:65%;
+    margin:0 auto;
+    padding:20px;
+}
+#movieForm input[type='submit'] {
+    padding:5px;
+    margin-top:20px;
+}
+#movieForm select {
+    width:600px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin: 0 0 0 -300px;
+}
+#movieForm .movieItem {
+    font-weight:bold;
+    padding:5px;
+}
+#moviePoster {
+    float:left;
+    padding:20px;
+}
+#movieTable {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin:0 auto;
+}
+#movieTable #movieHeading {
+    background-color:#003366;
+    color:#fff;
+}
+#movieTable td, #movieTable th {
+    padding:5px 10px;
+}
+#movieTitle {
+    padding:20px;
+}
+#msg {
+    color:#f00;
+}
+#newsItem {
+}
+#newsItem #article {
+    padding:10px;
+    margin-left:10px;
+}
+#newsItem h1 {
+    margin-bottom:2px;
+}
+#sidebar {
+    margin:5px;
+    padding:5px 10px;
+    width:290px;
+    float:left;
+}
+#subNav {
+    float:left;
+    width:240px;
+    height:100%;
+    margin:20px;
+}
+#subNav li {
+    background-color:#003366;
+    padding:10px;
+}
+#subNav ul {
+    margin-top:35px;
+}
+#subNav a:link, #subNav a:visited {
+    color:#eee;
+}
+#wrapper {
+    width:100%;
+}

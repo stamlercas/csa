@@ -1,0 +1,93 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 9, 2015, 7:29:16 PM
+    Author     : Chris
+*/
+
+@media only screen and (max-device-width: 480px) {
+
+    * {
+        float:none;
+    }
+    body {
+        min-width:0;
+    }
+    iframe {
+        max-width: 100%;
+    }
+    img {
+        max-width:100%;
+    }
+    header {
+        display:none;
+    }
+    nav {
+        display:none;
+    }
+    section {
+        width:100%;
+    }
+    table {
+        overflow-x:auto;
+        display:block;
+    }
+    
+    .movieBackdrop {
+        display:none;
+    }
+    .moviePosterDisplay {
+    }
+    .movieScheduleItem input, .movieListItem input {
+        float:none;
+        width:auto;
+    }
+    .navSeperator {
+        display:none;
+    }
+    .newsContent {
+        width:100%;
+        padding:0;
+    }
+    .slicknav_btn {
+        background-color:#97824A;
+    }
+    .slicknav_menu {
+        display:block;
+        background:#003366;
+    }
+    .slicknav_menutxt {
+    }
+    
+    #article {
+        padding:0;
+        margin:0;
+    }
+    #content {
+        float:none;
+        width:auto;
+    }
+    #homepageContent .left {
+        float:none;
+        width:auto;
+    }
+    #homepageContent .right {
+        float:none;
+        width:auto;
+    }
+    #moviePoster {
+        float:none;
+        width:auto;
+        text-align:center;
+    }
+    #movieTable {
+        max-width:480px;
+    }
+    #newsItem #article {
+        margin-left:0;
+    }
+
+}
