@@ -22,7 +22,7 @@
                         <div class="details">
                             <?php echo htmlspecialchars(dispDate($row['DateSubmitted'])) . " " . 
                                 htmlspecialchars(dispTime($row['DateSubmitted'])) ?>
-                             | Author: <?php echo $row['UserName'] ?>
+                             | Author: <?php echo $row['FirstName'] . " " . $row['LastName'] ?>
 
                         </div>
                         <a href="../news/<?php echo $row['Slug'] ?>">
