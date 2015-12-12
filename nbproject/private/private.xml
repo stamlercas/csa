@@ -3,17 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/csa/view/home.php</file>
-            <file>file:/C:/xampp/htdocs/csa/view/footerInclude.php</file>
-            <file>file:/C:/xampp/htdocs/csa/view/busSchedule.php</file>
+            <file>file:/C:/xampp/htdocs/csa/css/mobile.css</file>
+            <file>file:/C:/xampp/htdocs/csa/model/model.php</file>
             <file>file:/C:/xampp/htdocs/csa/css/main.css</file>
-            <file>file:/C:/xampp/htdocs/csa/view/bus.php</file>
-            <file>file:/C:/xampp/htdocs/csa/view/about.php</file>
-            <file>file:/C:/xampp/htdocs/csa/.htaccess</file>
-            <file>file:/C:/xampp/htdocs/csa/view/headerInclude.php</file>
+            <file>file:/C:/xampp/htdocs/csa/view/newsDisp.php</file>
+            <file>file:/C:/xampp/htdocs/csa/view/moviesHome.php</file>
             <file>file:/C:/xampp/htdocs/csa/view/subnav.php</file>
-            <file>file:/C:/xampp/htdocs/csa/controller/index.php</file>
-            <file>file:/C:/xampp/htdocs/csa/view/ata.php</file>
+            <file>file:/C:/xampp/htdocs/csa/view/news.php</file>
         </group>
     </open-files>
 </project-private>
