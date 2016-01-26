@@ -155,12 +155,12 @@
     
     //insert the news item into the db
     //THIS IS DONE AFTER CHECKING IF SLUG ALREADY EXISTS
-    function insertNewsItem($headline, $content, $slug, $userID)
+    function insertNewsItem($headline, $content, $slug, $userID, $image)
     {
         $db = getDBConnection();
         
-        $query = 'INSERT INTO `news` (Headline, Content, UserID, DateEdited, Slug)
-                VALUES (:Headline, :Content, :UserID, :DateEdited, :Slug)';
+        $query = 'INSERT INTO `news` (Headline, Content, UserID, DateEdited, Slug, Image)
+                VALUES (:Headline, :Content, :UserID, :DateEdited, :Slug, :Image)';
         $statement = $db->prepare($query);
         
         $statement->bindValue(':Headline', $headline);
@@ -169,6 +169,7 @@
         //Hasn't been edited yet
         $statement->bindValue(':DateEdited', null, PDO::PARAM_NULL);
         $statement->bindValue(':Slug', $slug);
+        $statement->bindValue(':Image', $image);
         
         $success = $statement->execute();
         $statement->closeCursor();

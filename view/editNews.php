@@ -13,7 +13,8 @@
         <br />
         <?php } ?>
         
-        <form id='form' action='../controller/index.php?action=processAddEditNews' method='post'>
+        <form id='form' enctype='multipart/form-data' 
+              action='../controller/index.php?action=processAddEditNews' method='post'>
             <input type='hidden' name='NewsID' value='<?php echo $newsID ?>' />
             <input type='hidden' name='Mode' value='<?php echo $mode ?>' />
             
@@ -28,6 +29,13 @@
             <div class="addEditForm">
                 <label>Content:</label>
                 <textarea name="Content" id="Content"><?php echo $content ?></textarea>
+            </div>
+            
+            <br />
+            
+            <div class="addEditForm">
+                <label>Image:</label>
+                <input name="userfile" type="file" id="File" <?php if ($mode == 'Edit') { echo 'disabled'; } ?>/>
             </div>
             
             <br />

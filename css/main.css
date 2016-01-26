@@ -181,10 +181,13 @@ ul {
     margin-bottom:5px;
 }
 .newsContent .description {
+    background-color:#eee;
+}
+.newsContent .descriptionTxt {
     font-size:small;
     padding:10px;
+    padding-left:20px;
     margin:5px;
-    background-color:#eee;
 }
 .addEditForm {
     padding:3px;
@@ -308,6 +311,11 @@ ul {
 }
 #msg {
     color:#f00;
+}
+#newsImage {
+    float:left;
+    max-width:200px;
+    padding:5px;
 }
 #newsItem {
 }

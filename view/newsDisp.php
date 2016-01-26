@@ -23,8 +23,11 @@
         </div>
         <br />
         <div id='article'>
-            <?php echo $row['Content'] ?>
+            <?php if (!empty($row['Image'])) { ?>
+                <img id="newsImage" src='<?php echo $row['Image'] ?>' alt='Picture complementing article' />
+            <?php } echo $row['Content'] ?>
         </div>
+        <div style='clear:both'></div>
     </div>
     <div class="showForm">
         <br />

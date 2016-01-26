@@ -1,4 +1,7 @@
 <?php
+    //setting timezone
+    date_default_timezone_set('America/New_York');
+
     session_start();
     require_once( "../security/model.php");
 
@@ -165,6 +168,7 @@
         $newsID = '';
         $headline = '';
         $content = '';
+        $image = '';
         
         //whenever you add you can't have any previous errors
         $errors = '';
@@ -328,6 +332,7 @@
                 $newsID = $row['NewsID'];
                 $headline = $row['Headline'];
                 $content = $row['Content'];
+                $image = $row['Image'];
                 
                 $errors = '';
                 
@@ -680,6 +685,46 @@
         
         $userID = $_SESSION['UserID'];
         
+        //image uploading
+        $image_info =
+        getimagesize($_FILES['userfile']['tmp_name']);
+        $image_width = $image_info[0];
+        $image_height = $image_info[1];
+        $image_type = $image_info[2];
+
+        $pathinfo = pathinfo($_FILES['userfile']['name']);
+        
+        $uploadfile = "../img/news/" . date('YmdHis') . '.' . $pathinfo['extension'];
+
+        if (file_exists($uploadfile))
+        {
+            $msg = 'The file was replaced successfully.';
+        }
+        else 
+        {
+            $msg = 'The file was successfully uploaded.';
+        }
+        
+        if ($image_type != IMAGETYPE_JPEG && $image_type !=
+        IMAGETYPE_GIF && $image_type != IMAGETYPE_PNG)
+        {
+            $errors .= '<br />* Only jpeg, gif, or png file types are allowed';
+        }
+        else if (!move_uploaded_file($_FILES['userfile']['tmp_name'],
+                                            $uploadfile))
+        {
+            $errors .= '<br />* Error uploading file';
+        }
+        else if ($_FILES['userfile']['error'] == UPLOAD_ERR_NO_FILE)
+        {
+            $errors .= '<br />* No file found';
+        }
+        /*
+        else
+        {
+            $errors .= '<br />* File Upload Error';
+        }*/
+        
         if ($errors != '')
         {
             include '../view/editNews.php';
@@ -688,7 +733,7 @@
         {
             if ($mode == 'Add')
             {
-                insertNewsItem($headline, $content, $slug, $userID);
+                insertNewsItem($headline, $content, $slug, $userID, $uploadfile);
                 header("Location:../news/$slug");
             }
             else
