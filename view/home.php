@@ -52,11 +52,15 @@
                             </div>
                             <a href="../news/<?php echo $row['Slug'] ?>">
                                 <div class="description">
-                                    <?php //length of substring for accoutName
-                                        $substrLength = 27; 
-                                        echo TinyMCESubStr($row['Content'],0,$substrLength);
-                                        if (strlen($row['Content']) > $substrLength) { echo '...'; } 
-                                    ?>
+                                    <img style='float:left;max-height:50px;padding-right:10px;' src='<?php echo $row['Image'] ?>' />
+                                    <div class='descriptionTxt'>
+                                        <?php //length of substring for accoutName
+                                            $substrLength = 27; 
+                                            echo TinyMCESubStr($row['Content'],0,$substrLength);
+                                            if (strlen($row['Content']) > $substrLength) { echo '...'; } 
+                                        ?>
+                                    </div>
+                                    <div style='clear:both;'></div>
                                 </div>
                             </a>
                         </div>

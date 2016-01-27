@@ -157,6 +157,30 @@
     }
     
     //returns all the movies for the week to insert into table
+    function getMovieScheduleFull()
+    {
+        try
+        {
+            $db = getDBConnection();
+            $query = "select moviedates.Date, moviedates.MovieID, movie.Title from moviedates "
+                    . "join movie on moviedates.MovieID = movie.MovieID "
+                    . "WHERE moviedates.Date > DATE_ADD(NOW(), INTERVAL -180 DAY)"
+                    . "ORDER BY moviedates.Date ASC";
+            $statement = $db->prepare($query);
+            $statement->execute();
+            $results = $statement->fetchAll();
+            $statement->closeCursor();
+            return $results;
+        } 
+        catch (PDOException $e) 
+        {
+            $errorMsg = $e->getMessage();
+            include "../view/errorPage.php";
+            die;
+        }
+    }
+    
+    //returns all the movies for the week to insert into table
     function getMovieScheduleSingleItem($movieID)
     {
         try
@@ -190,6 +214,28 @@
             $query = "select DISTINCT movie.Title, movie.MovieID, movie.Poster from moviedates "
                     . "join movie on moviedates.MovieID = movie.MovieID "
                     . "WHERE moviedates.Date BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 7 DAY)";
+            $statement = $db->prepare($query);
+            $statement->execute();
+            $results = $statement->fetchAll();
+            $statement->closeCursor();
+            return $results;
+        } 
+        catch (PDOException $e) 
+        {
+            $errorMsg = $e->getMessage();
+            include "../view/errorPage.php";
+            die;
+        }
+    }
+    
+    function getMovieScheduleIDsFull()
+    {
+        try
+        {
+            $db = getDBConnection();
+            $query = "select DISTINCT movie.Title, movie.MovieID, movie.Poster from moviedates "
+                    . "join movie on moviedates.MovieID = movie.MovieID "
+                    . "WHERE moviedates.Date > DATE_ADD(NOW(), INTERVAL -180 DAY)";
             $statement = $db->prepare($query);
             $statement->execute();
             $results = $statement->fetchAll();

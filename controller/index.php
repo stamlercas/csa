@@ -109,6 +109,9 @@
             case 'movieSchedule':
                 movieSchedule();
                 break;
+            case 'movieFullSchedule':
+                movieFullSchedule();
+                break;
             case 'movieWeeklySchedule':
                 movieWeeklySchedule();
                 break;
@@ -377,6 +380,13 @@
         {
             include '../view/movieDisp.php';
         }
+    }
+    
+    function movieFullSchedule()
+    {
+        $results = getMovieScheduleFull();
+        $movieItems = getMovieScheduleIDsFull();
+        include '../view/movieFullSchedule.php';
     }
     
     function movieWeeklySchedule()

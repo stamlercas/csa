@@ -32,8 +32,7 @@ and open the template in the editor.
         width:100%;
     }
     table {
-        overflow-x:auto;
-        display:block;
+        
     }
     
     .hasSubNav {
@@ -89,13 +88,15 @@ and open the template in the editor.
     }
     #movieTable {
         max-width:480px;
+        overflow-x:auto;
+        display:block;
     }
     #newsItem #article {
         margin-left:0;
     }
     #subNav {
         float: none;
-        max-width:100%;
+        width:100%;
         margin:0;
     }
 

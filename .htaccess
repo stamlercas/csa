@@ -55,6 +55,8 @@ RewriteRule ^movies/list/?$ controller/index.php?action=movieList [QSA]
 RewriteRule ^movies/deleteMovie/?$ controller/index.php?action=deleteMovie [QSA]
 #for movie showings for CURRENT WEEK
 RewriteRule ^movies/week/?$ controller/index.php?action=movieWeeklySchedule [QSA]
+#for movie showings for ITS ENTIRETY
+RewriteRule ^movies/calendar/?$ controller/index.php?action=movieFullSchedule [QSA]
 #for movie items
 RewriteRule ^movies/([0-9-]+)/?$ controller/index.php?action=movieDisp&MovieID=$1 [QSA]
 

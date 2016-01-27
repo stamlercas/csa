@@ -1,5 +1,5 @@
 <?php
-    $title = "About Us";
+    $title = "University Theater";
     include '../view/headerInclude.php';
 ?>
     <section>
@@ -7,6 +7,8 @@
         $navItems = array();
         $navItems[0]['title'] = "Showtimes";
         $navItems[0]['link'] = '../movies/week';
+        $navItems[1]['title'] = "Full Calendar";
+        $navItems[1]['link'] = '../movies/calendar';
         include '../view/subnav.php';
         ?> 
         <div class="hasSubNav">
