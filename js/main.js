@@ -1,6 +1,7 @@
 $( document ).ready(function() {
     
     $('nav').slicknav();
+    $('.slicknav_menu').prepend('<img style="max-width:70%;" src="../img/title.png" />');
     
     //fullscreen width
     var width= $(window).width();
