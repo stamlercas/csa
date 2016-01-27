@@ -12,7 +12,23 @@
         include '../view/subnav.php';
         ?> 
         <div class="hasSubNav">
-            <h1>The University Theater</h1>
+            <h1 style="float:left;">The University Theater</h1>
+            <div class='btnContainer'>
+                <?php if (userIsAuthorized("movieSchedule")) { ?>
+                    <input type="button" name="addButton" id='allShowingsButton' value='Show All Showings' class='editBtn'
+                           onclick='document.location="../movies/schedule";' /> <?php } ?>
+                <?php if (userIsAuthorized("movieList")) { ?>
+                    <input type="button" name="addButton" id='allMoviesButton' value='Show All Movies' class='editBtn'
+                           onclick='document.location="../movies/list";' /> <?php } ?>
+                    <br />
+                <?php if (userIsAuthorized("addMovieListing")) { ?>
+                <input type="button" name="addButton" id='addShowingButton' value='Add Movie Showing' class='editBtn'
+                       onclick='document.location="../movies/addShowing";' /> <?php } ?>
+                <?php if (userIsAuthorized("addMovie")) { ?>
+                    <input type="button" name="addButton" id='addMovieButton' value='Add Movie' class='editBtn'
+                           onclick='document.location="../movies/add";' /> <?php } ?>
+            </div>
+            <div style="clear:both;"></div>
             <div class="staticContent">
                 <div>
                     The University Theater is open to the public, faculty and staff at a low cost of $4 for adults, $2 for children 12 and younger, and free for Clarion University students with a university ID. Concessions also are available.

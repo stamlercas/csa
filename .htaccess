@@ -13,7 +13,6 @@ RewriteCond %{REQUEST_FILENAME} !-l
 #fundraising
 RewriteRule ^about/fundraising/?$ controller/index.php?action=fundraising [QSA]
 
-
 # ------------------------------------ #
 # APPLE
 # ------------------------------------ #
@@ -71,6 +70,18 @@ RewriteRule ^news/add/?$ controller/index.php?action=addNews [QSA]
 RewriteRule ^news/delete/?$ controller/index.php?action=deleteNews [QSA]
 #for news items
 RewriteRule ^news/([A-Za-z0-9-]+)/?$ controller/index.php?action=newsDisp&Slug=$1 [QSA]
+
+
+# ------------------------------------ #
+# POLICIES
+# ------------------------------------ #
+
+#displaying policies
+RewriteRule ^policies/?$ controller/index.php?action=policies [QSA]
+#add policies
+RewriteRule ^policies/add/?$ controller/index.php?action=addPolicy [QSA]
+#edit policies
+#ADD HERE!!!!
 
 #slideshow upload
 RewriteRule ^slideshow/upload/?$ controller/index.php?action=slideshowFileUpload [QSA]

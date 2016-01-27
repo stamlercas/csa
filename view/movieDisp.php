@@ -13,6 +13,14 @@
                 <img src='<?php echo '../' . htmlspecialchars($row['Poster']); ?>' 
                      alt="<?php echo htmlspecialchars($row['Title']) ?>" width=250 />
             </div>
+            <div class='btnContainer'>
+                <?php if (userIsAuthorized("addMovie")) { ?>
+                    <input type="button" name="addButton" id='addMovieButton' value='Add Movie' class='editBtn'
+                           onclick='document.location="../movies/add";' /> <?php } ?>
+                    <?php if (userIsAuthorized("addMovieListing")) { ?>
+                    <input type="button" name="addButton" id='addShowingButton' value='Add Movie Showing' class='editBtn'
+                           onclick='document.location="../movies/addShowing";' /> <?php } ?>
+                </div>
             <div id='movieTitle'>
                 <h2><?php echo htmlspecialchars($row['Title']) ?></h2>
                 <p style="font-size:small;"><?php echo htmlspecialchars($row['Tagline']) ?></p>

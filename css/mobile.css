@@ -91,6 +91,10 @@ and open the template in the editor.
         overflow-x:auto;
         display:block;
     }
+    #newsImage {
+        float:left;
+        max-width:120px;
+    }
     #newsItem #article {
         margin-left:0;
     }

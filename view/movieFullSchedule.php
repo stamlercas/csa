@@ -9,6 +9,12 @@
     <script src='../js/jquery.ui.touch.js'></script>
 
     <section>
+        <div class='btnContainer'>
+            <?php if (userIsAuthorized("addMovieListing")) { ?>
+                <input type="button" name="addButton" id='addShowingButton' value='Add Movie Showing' class='editBtn'
+                       onclick='document.location="../movies/addShowing";' /> <?php } ?>
+        </div>
+        <div style='clear:both;'></div>
         <div id='calendar'></div>
     </section>
     

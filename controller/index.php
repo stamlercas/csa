@@ -8,6 +8,7 @@
     require_once '../model/model.php';
     require_once '../model/appleModel.php';
     require_once '../model/movieModel.php';
+    require_once '../model/policyModel.php';
     require_once '../lib/generalFuncs.php';
     require_once '../lib/tmdbAPIfuncs.php';
     
@@ -58,6 +59,9 @@
             case 'addNews':
                 addNews();
                 break;
+            case 'addPolicy':
+                addPolicy();
+                break;
             case 'admin':
                 include '../view/admin.php';
                 break;
@@ -91,6 +95,9 @@
             case 'editNews':
                 editNews();
                 break;
+            case 'editPolicy':
+                editPolicy();
+                break;
             case 'fundraising':
                 include '../view/fundraising.php';
                 break;
@@ -121,6 +128,9 @@
             case 'newsDisp':
                 newsDisp();
                 break;
+            case 'policies':
+                policies();
+                break;
             case 'processAddMovie':
                 processAddMovie();
                 break;
@@ -129,6 +139,9 @@
                 break;
             case 'processAddEditNews':
                 processAddEditNews();
+                break;
+            case 'processAddEditPolicy':
+                processAddEditPolicy();
                 break;
             case 'processAddEditApple':
                 processAddEditApple();
@@ -177,6 +190,19 @@
         $errors = '';
         
         include '../view/editNews.php';
+    }
+    
+    function addPolicy()
+    {
+        $mode = 'Add';
+        $policyID = '';
+        $name = '';
+        $disclaimer = '';
+        $pdf = '';
+        
+        $errors = '';
+        
+        include '../view/editPolicies.php';
     }
     
     function apple()
@@ -340,6 +366,37 @@
                 $errors = '';
                 
                 include '../view/editNews.php';
+            }
+        }
+    }
+    
+    function editPolicy()
+    {
+        $policyID = $_GET['PolicyID'];
+        if (!isset($policyID))
+        {
+            $errorMsg = 'You must provide a PolicyID to display.';
+            include '../view/errorPage.php';
+        }
+        else
+        {
+            $row = getPolicyItemById($policyID);
+            if ($row == false)
+            {
+                $errorMsg = 'That PolicyID was not found.';
+                include '../view/errorPage.php';
+            }
+            else
+            {
+                $mode = 'Edit';
+                $policyID = $row['PolicyID'];
+                $name = $row['Name'];
+                $disclaimer = $row['Disclaimer'];
+                $url = $row['Url'];
+                
+                $errors = '';
+                
+                include '../view/editPolicies.php';
             }
         }
     }
@@ -509,6 +566,20 @@
             //$emailCountTemp is part of an array, only index
             $newsCount = ceil($newsCountTemp[0] / $numberOfItemsPerPage);
             include '../view/news.php';
+        }
+    }
+    
+    function policies()
+    {
+        $results = getPolicies();
+        if (count($results) == 0)
+        {
+            $errorMsg = 'No policies were found.';
+            include '../view/errorPage.php';
+        }
+        else
+        {
+            include '../view/policies.php';
         }
     }
     
@@ -751,6 +822,62 @@
                 //slug should never change or else it would break links
                 updateNewsItem($newsID, $headline, $content, $userID);
                 header("Location:../news/$slug");
+            }
+        }
+    }
+    
+    function processAddEditPolicy()
+    {
+        $policyID = $_POST['PolicyID'];
+        $mode = $_POST['Mode'];
+        $name = $_POST['Name'];
+        $disclaimer = $_POST['Disclaimer'];
+        
+        $errors = '';
+        
+        if (empty($name))
+        {
+            $errors .= "<br />* The policy name must be provided";
+        }
+        
+        $uploadfile = null;
+        if (isset($_FILES['userfile']))
+        {
+            $uploadfile = '../data/policies/' . $_FILES['userfile']['name'];
+            if ($_FILES['userfile']['type'] == "application/pdf") {
+                move_uploaded_file($_FILES['userfile']['tmp_name'],  $uploadfile);
+                if ($_FILES['userfile']['error'] == UPLOAD_ERR_NO_FILE) 
+                {
+                    $errors .= "<br />* No file found. Try again";
+                }
+            } 
+            else 
+            {
+                $errors .= "<br />* Only pdf files are supported. Make sure you are uploading a pdf file.";
+            }
+        }
+        else {
+            if ($mode != 'Edit')
+            {
+                $errors .= "<br />* You must include a pdf file";
+            }
+        }
+        
+        if ($errors != '')
+        {
+            include '../view/editPolicies.php';
+        }
+        else
+        {            
+            if ($mode == 'Add')
+            {
+                $policyID = insertPolicy($name, $disclaimer, $uploadfile);
+                header("Location:../policies/");
+            }
+            else
+            {
+                $rowsAffected = updatePolicy($policyID, $name, $disclaimer, $uploadfile);
+                header("Location:../policies/");
             }
         }
     }

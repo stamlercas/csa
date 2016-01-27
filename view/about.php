@@ -7,6 +7,8 @@
         $navItems = array();
         $navItems[0]['title'] = "Fundraising";
         $navItems[0]['link'] = '../about/fundraising';
+        $navItems[1]['title'] = "Policies";
+        $navItems[1]['link'] = '../policies/';
         include '../view/subnav.php';
         ?> 
         <div class="hasSubNav">

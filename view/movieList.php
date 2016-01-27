@@ -4,7 +4,7 @@
 ?>
 
 <section>
-    <h1>Movie Schedule</h1>
+    <h1>All Movies</h1>
     <div id="movieList">
         <ul class="movieList">
             <?php 

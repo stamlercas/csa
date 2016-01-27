@@ -4,7 +4,16 @@
 ?>
 
 <section>
-    <h1>Add Movie Showing</h1>
+    <h1 style='float:left;'>Add Movie Showing</h1>
+    <div class='btnContainer'>
+        <?php if (userIsAuthorized("movieSchedule")) { ?>
+        <input type="button" name="addButton" id='allShowingsButton' value='Show All Showings' class='editBtn'
+               onclick='document.location="../movies/schedule";' /> <?php } ?>
+        <?php if (userIsAuthorized("addMovie")) { ?>
+        <input type="button" name="addButton" id='addMovieButton' value='Add Movie' class='editBtn'
+               onclick='document.location="../movies/add";' /> <?php } ?>
+    </div>
+    <div style='clear:both;'></div>
     
     <div style="width:330px;float:left;">
         <div id="msg"></div>
