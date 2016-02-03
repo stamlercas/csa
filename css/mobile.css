@@ -35,9 +35,18 @@ and open the template in the editor.
         
     }
     
+    .fb-page, .fb_iframe_widget {
+        display:none;
+    }
+    .fundraising {
+        font-size:small;
+    }
     .hasSubNav {
         float:none;
         width:100%;
+    }
+    .missionStatement {
+        display:none;
     }
     .movieBackdrop {
         display:none;

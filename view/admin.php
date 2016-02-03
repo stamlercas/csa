@@ -10,8 +10,8 @@
         <?php //for whole unordered list
             //all actions are in if statement
             if (userIsAuthorized('slideshowFileUpload')) { ?>
-        <ul>
-            <h3>File Management</h3>
+        <h3 onclick='showAdminMenu("#fileManagement");'>File Management</h3>
+        <ul class='adminSubmenu' id='fileManagement'>
             <?php if (userIsAuthorized('slideshowFileUpload')) { ?>
             <li>
                 <a href="../slideshow/upload">Manage Slideshow Images</a>
@@ -21,8 +21,8 @@
         <?php } ?>
         
         <?php if (userIsAuthorized('addNews')) { ?>
-        <ul>
-            <h3>News</h3>
+        <h3 onclick='showAdminMenu("#news");'>News</h3>
+        <ul class='adminSubmenu' id='news'>
             <?php if (userIsAuthorized('addNews')) { ?>
             <li>
                 <a href="../addNews/">Add News Article</a>
@@ -33,8 +33,8 @@
         
         <?php if (userIsAuthorized('addMovie') || userIsAuthorized('addMovieListing') || 
                 userIsAuthorized('deleteMovie') || userIsAuthorized('deleteDate')) { ?>
-        <ul>
-            <h3>Movies</h3>
+        <h3 onclick='showAdminMenu("#movies");'>Movies</h3>
+        <ul class='adminSubmenu' id='movies'>
                 <?php if (userIsAuthorized('addMovie')) { ?>
             <li>
                 <a href="../movies/add">Add Movie</a>
@@ -57,6 +57,23 @@
     </ul>
     
 </section>
+
+<script>
+        function showAdminMenu(id)
+        {
+            if ($(id).css('display') === "none")
+            {
+                $(id).slideDown("fast");
+                $(id).addClass("shown");
+            }
+            else if ($(id).has("shown"))
+            {
+                $(id).slideUp("fast");
+                $(id).removeClass("shown");
+
+            }
+        }
+</script>
 
 <?php include '../view/footerInclude.php'; ?>
 

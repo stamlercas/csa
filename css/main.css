@@ -17,6 +17,9 @@ body {
         background-color: #fff;
         
 }
+footer {
+    margin-top:20px;
+}
 html {
         font-family: "Open Sans", sans-serif;
         color:black;
@@ -88,7 +91,7 @@ section {
     padding:5px;
     margin:0 auto;
     box-sizing:border-box;
-    margin-bottom:25px; 
+    margin-bottom:25px;
 }
 section a:link {
         color:#003366;
@@ -107,12 +110,20 @@ ul {
 .details {
     font-size:small;
 }
+.disclaimer {
+    font-size:small;
+    padding-left:10px;
+    font-weight:bold;
+}
 .editBtn {
     margin:0px 5px 5px 5px;
     float:right;
 }
 .errors {
     color:#f00;
+}
+.fb-page {
+    width:100%;
 }
 .fixed {
     position: fixed;
@@ -136,6 +147,19 @@ ul {
     right:55%;
     left:45%;
     z-index:99;
+}
+.missionStatement {
+    width:75%;
+    text-align:center;
+    font-family:oswald, sans-serif;
+}
+.movieAdmission, .contactInfo {
+    padding-left:20px;
+}
+.movieAdmission label {
+    font-weight:bold;
+    display:inline-block;
+    width:50px;
 }
 .movieBackdrop {
     position: absolute;
@@ -241,6 +265,12 @@ ul {
 .staticContent {
     padding:10px;
 }
+.staticContent a:link, .underlineLink a:visited {
+    text-decoration:underline;
+}
+.adminSubmenu {
+    display:none;
+}
 .underlineLink a:link, .underlineLink a:visited {
     text-decoration:underline;
 }
@@ -248,7 +278,9 @@ ul {
     text-align:center;
 }
 
-
+#adminMenu h3 {
+    cursor:pointer;
+}
 #adminMenu ul li {
     padding:0px 20px;
 }

@@ -7,8 +7,10 @@
 
     require_once '../model/model.php';
     require_once '../model/appleModel.php';
+    require_once '../model/contentModel.php';
     require_once '../model/movieModel.php';
     require_once '../model/policyModel.php';
+    require_once '../model/formModel.php';
     require_once '../lib/generalFuncs.php';
     require_once '../lib/tmdbAPIfuncs.php';
     
@@ -45,10 +47,13 @@
         {
             //alphabetical order
             case 'about':
-                include '../view/about.php';
+                about();
                 break;
             case 'addApple':
                 addApple();
+                break;
+            case 'addForm':
+                addForm();
                 break;
             case 'addMovie':
                 include '../view/addMovie.php';
@@ -72,7 +77,7 @@
                 include '../view/ata.php';
                 break;
             case 'bus':
-                include '../view/bus.php';
+                bus();
                 break;
             case 'busBreak':
                 include '../view/busSchedule.php';
@@ -83,20 +88,35 @@
             case 'deleteDate':
                 deleteDate();
                 break;
+            case 'deleteForm':
+                deleteForm();
+                break;
             case 'deleteMovie':
                 deleteMovie();
                 break;
             case 'deleteNews':
                 deleteNews();
                 break;
+            case 'deletePolicy':
+                deletePolicy();
+                break;
             case 'editApple':
                 editApple();
+                break;
+            case 'editContent':
+                editContent();
+                break;
+            case 'editForm':
+                editForm();
                 break;
             case 'editNews':
                 editNews();
                 break;
             case 'editPolicy':
                 editPolicy();
+                break;
+            case 'forms':
+                forms();
                 break;
             case 'fundraising':
                 include '../view/fundraising.php';
@@ -111,7 +131,7 @@
                 movieList();
                 break;
             case 'movies':
-                include '../view/moviesHome.php';
+                movies();
                 break;
             case 'movieSchedule':
                 movieSchedule();
@@ -137,6 +157,9 @@
             case 'processAddMovieListing':
                 processAddMovieListing();
                 break;
+            case 'processAddEditForm':
+                processAddEditForm();
+                break;
             case 'processAddEditNews':
                 processAddEditNews();
                 break;
@@ -145,6 +168,9 @@
                 break;
             case 'processAddEditApple':
                 processAddEditApple();
+                break;
+            case 'processEditContent':
+                processEditContent();
                 break;
             case 'processSlideshowFileDelete':
                 processSlideshowFileDelete();
@@ -162,6 +188,12 @@
         }
     }
     
+    function about()
+    {
+        $row = getContentItem('About');
+        include '../view/about.php';
+    }
+    
     function addApple()
     {
         $mode = 'Add';
@@ -170,6 +202,19 @@
         $appleTitle = '';
         
         include '../view/editApple.php';
+    }
+    
+    function addForm()
+    {
+        $mode = 'Add';
+        $formID = '';
+        $name = '';
+        $disclaimer = '';
+        $pdf = '';
+        
+        $errors = '';
+        
+        include '../view/editForm.php';
     }
     
     function addMovieListing()
@@ -207,8 +252,16 @@
     
     function apple()
     {
+        $content = getContentItem('Apple');
         $results = getAppleItems();
         include '../view/apple.php';
+    }
+    
+    function bus()
+    {
+        $content = getContentItem('Bus');
+        $break = getContentItem('BusBreak');
+        include '../view/bus.php';
     }
     
     function deleteApple()
@@ -265,6 +318,29 @@
         }
     }
     
+    function deleteForm()
+    {
+        $formID = $_GET['FormID'];
+        if (!isset($formID))
+        {
+            $errorMsg = 'You must provide a proper FormID.';
+            include '../view/errorPage.php';
+        }
+        else
+        {
+            $rowCount = deleteFormItemById($formID);
+            if ($rowCount != 1)
+            {
+                $errorMsg = "The delete affected $rowCount rows.";
+                include '../view/errorPage.php';
+            }
+            else
+            {
+                header("Location:../forms/");
+            }
+        }
+    }
+    
     function deleteMovie()
     {
         $movieID = urldecode($_GET['MovieID']);
@@ -311,6 +387,29 @@
         }
     }
     
+    function deletePolicy()
+    {
+        $policyID = $_GET['PolicyID'];
+        if (!isset($policyID))
+        {
+            $errorMsg = 'You must provide a proper PolicyID.';
+            include '../view/errorPage.php';
+        }
+        else
+        {
+            $rowCount = deletePolicyItemById($policyID);
+            if ($rowCount != 1)
+            {
+                $errorMsg = "The delete affected $rowCount rows.";
+                include '../view/errorPage.php';
+            }
+            else
+            {
+                header("Location:../policies/");
+            }
+        }
+    }
+    
     function editApple()
     {
         $appleID = $_GET['AppleID'];
@@ -335,6 +434,67 @@
                 $appleTitle = $row['Title'];
                 
                 include '../view/editApple.php';
+            }
+        }
+    }
+    
+    function editContent()
+    {
+        $contentID = $_GET['ContentID'];
+        if (!isset($contentID))
+        {
+            $errorMsg = 'You must provide a ContentID to display.';
+            include '../view/errorPage.php';
+        }
+        else
+        {
+            $row = getContentItem($contentID);
+            if ($row == false)
+            {
+                $errorMsg = 'That ContentID was not found.';
+                include '../view/errorPage.php';
+            }
+            else
+            {
+                $contentID = $row['ContentID'];
+                $cTitle = $row['Title'];
+                $content = $row['Content'];
+                $url = $row['Url'];
+                
+                $errors = '';
+                
+                include '../view/editContent.php';
+            }
+        }
+    }
+    
+    function editForm()
+    {
+        $formID = $_GET['FormID'];
+        if (!isset($formID))
+        {
+            $errorMsg = 'You must provide a FormID to display.';
+            include '../view/errorPage.php';
+        }
+        else
+        {
+            $row = getFormItemById($formID);
+            if ($row == false)
+            {
+                $errorMsg = 'That FormID was not found.';
+                include '../view/errorPage.php';
+            }
+            else
+            {
+                $mode = 'Edit';
+                $policyID = $row['FormID'];
+                $name = $row['Name'];
+                $disclaimer = $row['Disclaimer'];
+                $url = $row['Url'];
+                
+                $errors = '';
+                
+                include '../view/editForm.php';
             }
         }
     }
@@ -398,6 +558,20 @@
                 
                 include '../view/editPolicies.php';
             }
+        }
+    }
+    
+    function forms()
+    {
+        $results = getForms();
+        if (count($results) == 0)
+        {
+            $errorMsg = 'No forms were found.';
+            include '../view/errorPage.php';
+        }
+        else
+        {
+            include '../view/forms.php';
         }
     }
     
@@ -466,6 +640,12 @@
         {
             include '../view/movieList.php';
         }
+    }
+    
+    function movies()
+    {
+        $row = getContentItem('Theater');
+        include '../view/moviesHome.php';
     }
     
     function movieSchedule()
@@ -737,6 +917,62 @@
         }
     }
     
+    function processAddEditForm()
+    {
+        $formID = $_POST['FormID'];
+        $mode = $_POST['Mode'];
+        $name = $_POST['Name'];
+        $disclaimer = $_POST['Disclaimer'];
+        
+        $errors = '';
+        
+        if (empty($name))
+        {
+            $errors .= "<br />* The form name must be provided";
+        }
+        
+        $uploadfile = null;
+        if (isset($_FILES['userfile']))
+        {
+            $uploadfile = '../data/forms/' . $_FILES['userfile']['name'];
+            if ($_FILES['userfile']['type'] == "application/pdf") {
+                move_uploaded_file($_FILES['userfile']['tmp_name'],  $uploadfile);
+                if ($_FILES['userfile']['error'] == UPLOAD_ERR_NO_FILE) 
+                {
+                    $errors .= "<br />* No file found. Try again";
+                }
+            } 
+            else 
+            {
+                $errors .= "<br />* Only pdf files are supported. Make sure you are uploading a pdf file.";
+            }
+        }
+        else {
+            if ($mode != 'Edit')
+            {
+                $errors .= "<br />* You must include a pdf file";
+            }
+        }
+        
+        if ($errors != '')
+        {
+            include '../view/editForm.php';
+        }
+        else
+        {            
+            if ($mode == 'Add')
+            {
+                $formID = insertForm($name, $disclaimer, $uploadfile);
+                header("Location:../forms/");
+            }
+            else
+            {
+                $rowsAffected = updateForm($formID, $name, $disclaimer, $uploadfile);
+                header("Location:../forms/");
+            }
+        }
+    }
+    
     function processAddEditNews()
     {
         $newsID = $_POST['NewsID'];
@@ -929,6 +1165,38 @@
         else
         {
             $errorMsg = "File Upload Error";
+            include '../view/errorPage.php';
+        }
+    }
+    
+    function processEditContent()
+    {
+        $contentID = $_POST['ContentID'];
+        $title = $_POST['Title'];
+        $content = $_POST['Content'];
+        $url = $_POST['Url'];
+        
+        $errors = '';
+        
+        if ( empty($title) || strlen($headline) > 50)
+        {
+            $errors .= '<br />* Provide a headline that is less than 50 characters';
+        }
+        if (empty($content) || strlen($content) > 3000)
+        {
+            $errors .= '<br />* Provide content that is less than 3,000 characters';
+        }
+        
+        $userID = $_SESSION['UserID'];
+        
+        $result = updateContent($contentID, $title, $content, $userID);
+        if ($result)
+        {
+            header("Location:$url");
+        }
+        else
+        {
+            $errorMsg = print_r($result);
             include '../view/errorPage.php';
         }
     }

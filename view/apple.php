@@ -13,7 +13,7 @@
 <script src="../js/jquery.image-gallery.min.js"></script>
 
 <section>
-    <h1 style="float:left;">The Apple</h1>
+    <h1 style="float:left;"><?php echo $content['Title'] ?></h1>
     <?php if (userIsAuthorized("addApple")) { ?>
         <input type="button" name="addButton" id='editButton' value='Add Image' style="margin-top:20px;float:right;"
                onclick='document.location="../apple/add";' /> <?php } ?>
@@ -52,13 +52,12 @@
                          <?php if ($firstPic) { ?>
             <div style='clear:both;'></div>
             <div style="padding:20px;">
-                Clarion Students' Association, in collaboration with the Traditions Council, 
-                unveiled an apple sculpture Sept. 7, 2013, on the lawn of Grunenwald Center for Science and Technology. 
-                Students have embraced this new canvas to share their thoughts and promote their organizations. 
-                "Painting on the apple is very popular, even during winter," said  Kaitlyn Jones, a recent graduate of the 
-                Communication program. "You are lucky if your message remains on the apple for 24 hours.  The space is very 
-                much in demand." Funded through the CSA Special Projects Fund, the apple sculpture honors Clarion University's 
-                long-standing commitment to education since its founding as Clarion Seminary in 1867.
+                <?php echo $content['Content'] ?>
+                <?php if (userIsAuthorized("editContent")) { ?>
+                <br />
+                <input type="button" name="editButton" id='editButton' value='Edit' 
+                       onclick='document.location="../content/edit?ContentID=<?php echo $content['ContentID'] ?>";' />
+                <?php } ?>
             </div>
             <div style="clear:both;"></div>
             

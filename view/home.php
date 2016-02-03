@@ -28,7 +28,11 @@
     </div>
 </section>
 
-<hr style='width:75%;'/>
+<section class="missionStatement">
+    The Clarion Students' Association provides services and enhances student and community life through stewardship of it 
+    members' activity fee and resources.
+    <!-- <hr /> -->
+</section>
 
 <section>
     <div id="homepageContent">

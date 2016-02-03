@@ -36,6 +36,28 @@ RewriteRule ^bus/ata/?$ controller/index.php?action=ata [QSA]
 
 
 # ------------------------------------ #
+# CONTENT
+# ------------------------------------ #
+
+#bus break schedule
+RewriteRule ^content/edit/?$ controller/index.php?action=editContent [QSA]
+
+
+# ------------------------------------ #
+# FORMS
+# ------------------------------------ #
+
+#displaying forms
+RewriteRule ^forms/?$ controller/index.php?action=forms [QSA]
+#add policies
+RewriteRule ^forms/add/?$ controller/index.php?action=addForm [QSA]
+#delete policies
+RewriteRule ^forms/delete/?$ controller/index.php?action=deleteForm [QSA]
+#edit policies
+RewriteRule ^forms/edit/?$ controller/index.php?action=editForm [QSA]
+
+
+# ------------------------------------ #
 # MOVIES
 # ------------------------------------ #
 
@@ -80,8 +102,10 @@ RewriteRule ^news/([A-Za-z0-9-]+)/?$ controller/index.php?action=newsDisp&Slug=$
 RewriteRule ^policies/?$ controller/index.php?action=policies [QSA]
 #add policies
 RewriteRule ^policies/add/?$ controller/index.php?action=addPolicy [QSA]
+#delete policies
+RewriteRule ^policies/delete/?$ controller/index.php?action=deletePolicy [QSA]
 #edit policies
-#ADD HERE!!!!
+RewriteRule ^policies/edit/?$ controller/index.php?action=editPolicy [QSA]
 
 #slideshow upload
 RewriteRule ^slideshow/upload/?$ controller/index.php?action=slideshowFileUpload [QSA]

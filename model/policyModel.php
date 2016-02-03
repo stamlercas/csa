@@ -2,6 +2,14 @@
 
     require_once __DIR__ . '/db.php';
     
+    function deletePolicyItemById($policyID)
+    {
+        $db = new DB();
+        $db->bind('PolicyID', $policyID);
+        $result = $db->query('DELETE FROM policies WHERE PolicyID = :PolicyID');
+        return $result;
+    }
+    
     function getPolicyItemById($policyID)
     {
         $db = new DB();
@@ -13,7 +21,7 @@
     function getPolicies()
     {
         $db = new DB();
-        $results = $db->query('SELECT PolicyID, Name, Disclaimer, Url FROM policies ORDER BY Name');
+        $results = $db->query('SELECT PolicyID, Name, Disclaimer, LastUpdated, Url FROM policies ORDER BY Name');
         return $results;
     }
     
@@ -49,7 +57,6 @@
         {
             $db->bind('Disclaimer', $disclaimer);
         }
-        $db->bind('Url', $uploadFile);
         
         if ($uploadFile == null)
         {
@@ -57,6 +64,7 @@
         }
         else
         {
+            $db->bind('Url', $uploadFile);
             $result = $db->query('UPDATE policies SET Name = :Name, Disclaimer = :Disclaimer, Url = :Url WHERE PolicyID = :PolicyID');
         }
         
